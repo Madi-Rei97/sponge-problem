@@ -1,8 +1,28 @@
 def sponge_case(sentence):
-    # Write your solution here!
-    pass
+    new_sentence = sentence.split(" ")
+    sponge_sentence = []
 
+    for word in new_sentence:
+        sponge_sentence.append(sponge_single_word(word))
 
+    return " ".join(sponge_sentence)
+
+def sponge_single_word(word):
+    new_word = []
+    index = 0
+
+    for letter in word:
+        if index == 0:
+            new_word.append(letter.lower())
+        elif index == 1:
+            new_word.append(letter.upper())
+        elif index >= 2 and index % 2 == 0:
+            new_word.append(letter.lower())
+        else:
+            new_word.append(letter.upper())
+        index += 1
+
+    return "".join(new_word)
 
 # Test cases
 assert sponge_case("spongebob") == "sPoNgEbOb"
